@@ -1,4 +1,4 @@
-package com.payback.interviewapp.ui.theme
+package com.payback.interviewapp.base.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.payback.interviewapp.ui.theme
+package com.payback.interviewapp.base.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
