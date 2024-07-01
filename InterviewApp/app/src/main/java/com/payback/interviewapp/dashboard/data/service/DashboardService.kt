@@ -4,6 +4,8 @@ import com.payback.interviewapp.dashboard.data.model.DashboardResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+internal const val DEFAULT_DASHBOARD_QUERY = "fruits"
+
 internal interface DashboardService {
     @GET("api/")
     suspend fun getImages(

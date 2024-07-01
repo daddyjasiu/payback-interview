@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_dialog_title">Confirm action</string>
+    <string name="dashboard_dialog_body">Are you sure you want to see the image details page?</string>
+    <string name="dashboard_dialog_dismiss_button">Dismiss</string>
+    <string name="dashboard_dialog_confirm_button">Confirm</string>
+    <string name="dashboard_search_bar_hint">Enter search items</string>
+    <string name="dashboard_search_bar_button_label">Search</string>
 </resources>

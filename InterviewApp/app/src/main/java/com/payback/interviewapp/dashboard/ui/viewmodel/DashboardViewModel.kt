@@ -4,17 +4,22 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.google.gson.Gson
+import com.payback.interviewapp.BuildConfig
 import com.payback.interviewapp.base.navigation.Destination
 import com.payback.interviewapp.dashboard.data.model.DashboardRequest
 import com.payback.interviewapp.dashboard.data.repository.DashboardRepository
-import com.payback.interviewapp.details.ui.mapper.DashboardUiMapper
-import com.payback.interviewapp.details.ui.mapper.UiDashboardItem
+import com.payback.interviewapp.dashboard.data.service.DEFAULT_DASHBOARD_QUERY
+import com.payback.interviewapp.dashboard.ui.mapper.DashboardUiMapper
+import com.payback.interviewapp.dashboard.ui.mapper.UiDashboardItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,18 +33,31 @@ internal class DashboardViewModel @Inject constructor(
     val uiState: StateFlow<DashboardUiState> get() = _uiState
 
     init {
-        fetchImages()
+        fetchImages(DEFAULT_DASHBOARD_QUERY)
     }
 
-    private fun fetchImages() {
+    fun onUiEvent(event: DashboardUiEvent) {
+        when (event) {
+            is DashboardUiEvent.GoToDetailsScreen -> goToDetailsScreen(event.dashboardItem)
+            is DashboardUiEvent.FetchImages -> fetchImages(event.tags)
+        }
+    }
+
+    private fun goToDetailsScreen(dashboardItem: UiDashboardItem) {
+        val json = Gson().toJson(dashboardItem)
+        val encodedJson = URLEncoder.encode(json, StandardCharsets.UTF_8.toString())
+        navController.navigate("${Destination.Details.route}/$encodedJson")
+    }
+
+    private fun fetchImages(tags: String) {
         viewModelScope.launch {
             flow {
                 emit(DashboardUiState.Loading)
 
                 val response = repository.getImages(
                     DashboardRequest(
-                        key = "44719350-f487ca31df1dd432e2633d430",
-                        query = "fruits"
+                        key = BuildConfig.API_KEY,
+                        query = tags
                     )
                 )
                 val dashboardItems = uiMapper.invoke(response)
@@ -58,13 +76,4 @@ internal class DashboardViewModel @Inject constructor(
         }
     }
 
-    fun onUiEvent(event: DashboardUiEvent) {
-        when (event) {
-            is DashboardUiEvent.GoToDetailsScreen -> goToDetailsScreen(event.dashboardItem)
-        }
-    }
-
-    private fun goToDetailsScreen(dashboardItem: UiDashboardItem) {
-        navController.navigate(Destination.Details.route)
-    }
 }
