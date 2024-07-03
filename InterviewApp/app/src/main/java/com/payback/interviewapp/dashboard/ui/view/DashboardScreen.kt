@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,6 +37,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import com.payback.interviewapp.R
@@ -48,8 +50,8 @@ import com.payback.interviewapp.base.ui.dimen16
 import com.payback.interviewapp.base.ui.dimen4
 import com.payback.interviewapp.base.ui.dimen6
 import com.payback.interviewapp.base.ui.dimen8
-import com.payback.interviewapp.dashboard.ui.mapper.UiDashboardItem
-import com.payback.interviewapp.dashboard.ui.mapper.mockUiDashboardItem
+import com.payback.interviewapp.dashboard.ui.model.UiDashboardItem
+import com.payback.interviewapp.dashboard.ui.model.mockUiDashboardItem
 import com.payback.interviewapp.dashboard.ui.viewmodel.DashboardUiEvent
 import com.payback.interviewapp.dashboard.ui.viewmodel.DashboardUiState
 
@@ -58,7 +60,7 @@ internal fun DashboardScreen(uiState: DashboardUiState, onUiEvent: (DashboardUiE
     when (uiState) {
         is DashboardUiState.Loading -> FullScreenLoadingScreen()
         is DashboardUiState.Loaded -> DashboardBody(uiState = uiState, onUiEvent = onUiEvent)
-        is DashboardUiState.Error -> {}
+        is DashboardUiState.Error -> DashboardError(onUiEvent = onUiEvent)
     }
 }
 
@@ -70,9 +72,12 @@ private fun DashboardBody(uiState: DashboardUiState.Loaded, onUiEvent: (Dashboar
     BaseScreen(
         title = stringResource(R.string.dashboard_title),
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+        Column(
+            modifier = Modifier.padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
             DashboardSearchBar { query ->
-                onUiEvent(DashboardUiEvent.FetchImages(query))
+                onUiEvent(DashboardUiEvent.FetchItems(query))
             }
             LazyVerticalStaggeredGrid(
                 columns = StaggeredGridCells.Fixed(2)
@@ -86,6 +91,7 @@ private fun DashboardBody(uiState: DashboardUiState.Loaded, onUiEvent: (Dashboar
                         }
                     )
                 }
+
             }
         }
     }
@@ -98,6 +104,28 @@ private fun DashboardBody(uiState: DashboardUiState.Loaded, onUiEvent: (Dashboar
             },
             onDismiss = { alertDialogOpened = false }
         )
+    }
+}
+
+@Composable
+private fun DashboardError(onUiEvent: (DashboardUiEvent) -> Unit) {
+    BaseScreen(
+        title = stringResource(R.string.dashboard_title),
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier.padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            DashboardSearchBar { query ->
+                onUiEvent(DashboardUiEvent.FetchItems(query))
+            }
+            Spacer(modifier = Modifier.height(dimen120))
+            Text(
+                "Something went wrong.\nPlease try again.",
+                style = MaterialTheme.typography.titleLarge,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }
 

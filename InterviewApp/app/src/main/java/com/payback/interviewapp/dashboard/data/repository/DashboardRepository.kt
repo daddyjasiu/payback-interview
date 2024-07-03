@@ -1,15 +1,18 @@
 package com.payback.interviewapp.dashboard.data.repository
 
+import com.payback.interviewapp.dashboard.data.model.DashboardCacheEntity
 import com.payback.interviewapp.dashboard.data.model.DashboardRequest
 import com.payback.interviewapp.dashboard.data.model.DashboardResponse
+import com.payback.interviewapp.dashboard.data.service.DashboardItemDao
 import com.payback.interviewapp.dashboard.data.service.DashboardService
 import javax.inject.Inject
 
 internal class DashboardRepository @Inject constructor(
     private val service: DashboardService,
+    private val dao: DashboardItemDao,
 ) {
-    suspend fun getImages(request: DashboardRequest): DashboardResponse {
-        return service.getImages(
+    suspend fun getItems(request: DashboardRequest): DashboardResponse =
+        service.getItems(
             key = request.key,
             query = request.query,
             language = request.language,
@@ -28,5 +31,6 @@ internal class DashboardRepository @Inject constructor(
             callback = request.callback,
             pretty = request.pretty
         )
-    }
+
+    fun getCachedItems(): List<DashboardCacheEntity> = dao.getAllItems()
 }

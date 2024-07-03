@@ -16,7 +16,7 @@ import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.payback.interviewapp.dashboard.ui.view.DashboardScreen
 import com.payback.interviewapp.dashboard.ui.viewmodel.DashboardViewModel
-import com.payback.interviewapp.dashboard.ui.mapper.UiDashboardItem
+import com.payback.interviewapp.dashboard.ui.model.UiDashboardItem
 import com.payback.interviewapp.details.ui.view.DetailsScreen
 import com.payback.interviewapp.details.ui.viewmodel.DetailsViewModel
 

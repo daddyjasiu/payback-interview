@@ -1,6 +1,6 @@
 package com.payback.interviewapp.dashboard.ui.viewmodel
 
-import com.payback.interviewapp.dashboard.ui.mapper.UiDashboardItem
+import com.payback.interviewapp.dashboard.ui.model.UiDashboardItem
 
 internal sealed class DashboardUiState {
     data object Loading : DashboardUiState()

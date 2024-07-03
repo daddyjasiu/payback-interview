@@ -30,8 +30,8 @@ import com.payback.interviewapp.base.ui.dimen12
 import com.payback.interviewapp.base.ui.dimen16
 import com.payback.interviewapp.base.ui.dimen256
 import com.payback.interviewapp.base.ui.dimen8
-import com.payback.interviewapp.dashboard.ui.mapper.UiDashboardItem
-import com.payback.interviewapp.dashboard.ui.mapper.mockUiDashboardItem
+import com.payback.interviewapp.dashboard.ui.model.UiDashboardItem
+import com.payback.interviewapp.dashboard.ui.model.mockUiDashboardItem
 import com.payback.interviewapp.details.ui.viewmodel.DetailsUiEvent
 
 @Composable

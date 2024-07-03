@@ -8,7 +8,7 @@ internal const val DEFAULT_DASHBOARD_QUERY = "fruits"
 
 internal interface DashboardService {
     @GET("api/")
-    suspend fun getImages(
+    suspend fun getItems(
         @Query("key") key: String,
         @Query("q") query: String? = null,
         @Query("lang") language: String = "en",

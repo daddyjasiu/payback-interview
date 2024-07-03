@@ -1,5 +1,7 @@
 package com.payback.interviewapp.di
 
+import com.payback.interviewapp.dashboard.data.service.DashboardItemDao
+import com.payback.interviewapp.dashboard.data.repository.DashboardRepository
 import com.payback.interviewapp.dashboard.data.service.DashboardService
 import dagger.Module
 import dagger.Provides
@@ -38,4 +40,12 @@ object NetworkModule {
         return retrofit.create(DashboardService::class.java)
     }
 
+    @Provides
+    @Singleton
+    internal fun provideDashboardRepository(
+        service: DashboardService,
+        dao: DashboardItemDao,
+    ): DashboardRepository {
+        return DashboardRepository(service, dao)
+    }
 }
