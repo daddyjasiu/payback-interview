@@ -1,15 +1,24 @@
 # payback-interview
 Online image searching app created in Kotlin with Jetpack Compose.
+
 The app is created in highly scalable architecture, is configurable, supports Material 3 and light/dark mode. 
+
 Implemented loading and error handling with concrete states and different UI.
 
-Tech stack:
+### Tech stack:
+
 DI: Hilt
+
 Architecture: CLEAN + MVVM
+
 UI: Jetpack Compose, Coil
+
 Remote data: Retrofit, Gson
+
 Caching/local data: Room
+
 Unit tests & integration tests: JUnit, mockk, test
+
 
 ![image](https://github.com/daddyjasiu/payback-interview/assets/65863073/56b09149-78ed-4bf7-b535-08d4a6079353)
 ![image](https://github.com/daddyjasiu/payback-interview/assets/65863073/3242d22a-52b4-46c7-85e7-2078830ab084)
