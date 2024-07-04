@@ -3,7 +3,7 @@ Online image searching app created in Kotlin with Jetpack Compose.
 
 The app is created in highly scalable architecture, is configurable, supports Material 3 and light/dark mode. 
 
-Implemented loading and error handling with concrete states and different UI.
+Implemented loading and error handling with concrete states and different UI. App supports background caching and offline data loading from cache.
 
 ### Tech stack:
 
