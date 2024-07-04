@@ -50,3 +50,29 @@ internal data class PixabayHit(
     @SerializedName("userImageURL")
     val userImageURL: String,
 )
+
+internal val mockPixabayHit = PixabayHit(
+    id = 123,
+    pageURL = "https://example.com/page",
+    type = "photo",
+    tags = "nature, water",
+    previewURL = "https://example.com/preview.jpg",
+    previewWidth = 150,
+    previewHeight = 100,
+    webformatURL = "https://example.com/webformat.jpg",
+    webformatWidth = 600,
+    webformatHeight = 400,
+    largeImageURL = "https://example.com/large.jpg",
+    fullHDURL = "https://example.com/fullhd.jpg",
+    imageURL = "https://example.com/image.jpg",
+    imageWidth = 1920,
+    imageHeight = 1080,
+    imageSize = 1048576,
+    views = 1000,
+    downloads = 200,
+    likes = 50,
+    comments = 10,
+    userId = 1,
+    user = "test_user",
+    userImageURL = "https://example.com/user.jpg"
+)
