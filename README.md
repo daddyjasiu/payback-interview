@@ -7,17 +7,17 @@ Implemented loading and error handling with concrete states and different UI.
 
 ### Tech stack:
 
-DI: Hilt
+- DI: Hilt
 
-Architecture: CLEAN + MVVM
+- Architecture: CLEAN + MVVM
 
-UI: Jetpack Compose, Coil
+- UI: Jetpack Compose, Coil
 
-Remote data: Retrofit, Gson
+- Remote data: Retrofit, Gson
 
-Caching/local data: Room
+- Caching/local data: Room
 
-Unit tests & integration tests: JUnit, mockk, test
+- Unit tests & integration tests: JUnit, mockk, test
 
 
 ![image](https://github.com/daddyjasiu/payback-interview/assets/65863073/56b09149-78ed-4bf7-b535-08d4a6079353)
