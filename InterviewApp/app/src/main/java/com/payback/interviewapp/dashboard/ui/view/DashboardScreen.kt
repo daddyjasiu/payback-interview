@@ -130,7 +130,7 @@ private fun DashboardError(onUiEvent: (DashboardUiEvent) -> Unit) {
 }
 
 @Composable
-private fun DashboardSearchBar(onSearch: (String) -> Unit) {
+internal fun DashboardSearchBar(onSearch: (String) -> Unit) {
     var textState by remember { mutableStateOf(TextFieldValue("")) }
 
     Row(
@@ -161,7 +161,7 @@ private fun DashboardSearchBar(onSearch: (String) -> Unit) {
 }
 
 @Composable
-private fun CardItem(item: UiDashboardItem, onCardClicked: () -> Unit) {
+internal fun CardItem(item: UiDashboardItem, onCardClicked: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(dimen8)

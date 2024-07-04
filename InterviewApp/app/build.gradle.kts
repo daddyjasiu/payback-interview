@@ -56,12 +56,16 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -85,14 +89,16 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
-    //noinspection UseTomlInstead
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
     testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.kotlinx.coroutines.test)
-    testImplementation (libs.androidx.core.testing)
-    testImplementation (libs.kotlinx.coroutines.core)
-
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.core)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest (libs.hilt.compiler)
+    kspTest (libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

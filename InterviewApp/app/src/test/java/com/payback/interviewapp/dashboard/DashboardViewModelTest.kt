@@ -75,9 +75,9 @@ class DashboardViewModelTest {
         // Act
         underTest = initViewModel()
 
-        // Verify
         advanceUntilIdle()
 
+        // Verify
         assert(underTest.uiState.value is DashboardUiState.Error)
     }
 
